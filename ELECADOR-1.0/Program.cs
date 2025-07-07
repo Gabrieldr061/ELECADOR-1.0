@@ -6,7 +6,8 @@
         private Indicador indicador;
         private Sensor sensor;
         private Motor motor;
-
+        int pisoact = 1;
+        int piso;
         public void Funcionamiento()
         {
             Console.WriteLine("Bienvenido");
@@ -29,23 +30,34 @@
 
             //.......<FIN DEL SENSOR>.......
 
-            indicador.IndicadorDePiso(1);
+            indicador.IndicadorDePiso(pisoact);
             Console.WriteLine("------------------------------------------------------");
 
             Console.WriteLine("A QUE PISO QUIERES IR?");
             Console.WriteLine("1...\n2...\n3...\n4...\n5...");
-            int piso = Convert.ToInt32(Console.ReadLine());
+            
+            piso = Convert.ToInt32(Console.ReadLine());
+          
             Console.Clear();
 
+            if (piso == pisoact)
+            {
+                Console.WriteLine("Ya estás en el piso ingresado \n Ingresa otro piso");
+               
+                return;
+
+            }
             if (piso == 1)
             {
                 
                 indicador.actualizar(piso);
+                pisoact = piso;
 
             } 
             if (piso == 2)
             {
                 indicador.actualizar(piso);
+                    pisoact = piso;
 
 
             }
@@ -53,16 +65,19 @@
             if (piso == 3)
             {
                 indicador.actualizar(piso);
+                pisoact = piso;
             }
             
             if (piso == 4)
             {
                 indicador.actualizar(piso);
+                pisoact = piso;
             }
            
             if (piso == 5)
             {
                 indicador.actualizar(piso);
+                pisoact = piso;
 
             }
 
@@ -83,7 +98,8 @@
             ELEVADOR elevador = new ELEVADOR();
             inicio:
             elevador.Funcionamiento();
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
+            Console.Clear();
             goto inicio;
 
         }
