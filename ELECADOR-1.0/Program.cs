@@ -20,7 +20,7 @@
             Console.WriteLine("Bienvenido");
             Thread.Sleep(1500);
             Console.Clear();
-
+            //.......<SENSOR ANGEL>.........
             Sensor sensor = new Sensor();
             Indicador indicador = new Indicador();
 
@@ -32,6 +32,7 @@
 
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
+            //.......<FIN DEL SENSOR>.......
 
             indicador.IndicadorDePiso(pisoact);
             Console.WriteLine("------------------------------------------------------");
@@ -58,7 +59,7 @@
 
             motor.Encender();
             Console.WriteLine($"Yendo al piso {piso}...");
-            Thread.Sleep(2000); // Simula el tiempo de viaje
+            Thread.Sleep(2000); // Simula el tiempo en el que el elevador se mueve
             motor.Apagar();
             Thread.Sleep(1000); // Simula el frenado
             Console.WriteLine("Elevador detenido..");
