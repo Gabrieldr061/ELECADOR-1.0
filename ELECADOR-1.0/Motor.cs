@@ -7,7 +7,7 @@
             public void Encender() // funcion que simula el comportamiendo del motor al encenderse
         {
                 Encendido = true;
-                Console.WriteLine("El motor está encendido.");
+                Console.WriteLine("El motor está encendido...");
             }
 
             public void Apagar() // funcion que simula el comportamiendo del motor al apagarse 
