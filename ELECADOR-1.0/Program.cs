@@ -41,23 +41,23 @@
             if (piso == 2)
             {
 
-                Console.WriteLine("Yendo al piso 1...");
+                Console.WriteLine("Yendo al piso 2...");
 
             }
             if (piso == 3)
             {
 
-                Console.WriteLine("Yendo al piso 1...");
+                Console.WriteLine("Yendo al piso 3...");
             }
             if (piso == 4)
             {
 
-                Console.WriteLine("Yendo al piso 1...");
+                Console.WriteLine("Yendo al piso 4...");
             }
             if (piso == 5)
             {
 
-                Console.WriteLine("Yendo al piso 1...");
+                Console.WriteLine("Yendo al piso 5...");
             }
 
             if (piso < 1 || piso > 5)
