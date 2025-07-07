@@ -6,8 +6,10 @@
         private Indicador indicador;
         private Sensor sensor;
         private Motor motor;
+
         int pisoact = 1;
         int piso;
+
         public ELEVADOR()
         {
             boton = new Boton();
@@ -15,31 +17,26 @@
             sensor = new Sensor();
             motor = new Motor();
         }
+
         public void Funcionamiento()
         {
             Console.WriteLine("Bienvenido");
+            Console.WriteLine("------------------------------------------------------");
             Thread.Sleep(1500);
-            Console.Clear();
-            //.......<SENSOR ANGEL>.........
-            Sensor sensor = new Sensor();
-            Indicador indicador = new Indicador();
 
             if (!sensor.detectarPeso())
             {
                 Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
-                return; // Detiene el programa si está en sobrepeso
+                return;
             }
 
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
-            //.......<FIN DEL SENSOR>.......
-
             indicador.IndicadorDePiso(pisoact);
             Console.WriteLine("------------------------------------------------------");
-
             Console.WriteLine("A QUE PISO QUIERES IR?");
-            Console.WriteLine("1...\n2...\n3...\n4...\n5...");
-            
+            Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
+            Console.WriteLine("------------------------------------------------------");
             piso = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
 
@@ -55,17 +52,18 @@
                 return;
             }
 
-           
-
+            Console.WriteLine("------------------------------------------------------");
             motor.Encender();
-            Console.WriteLine($"Yendo al piso {piso}...");
-            Thread.Sleep(2000); // Simula el tiempo en el que el elevador se mueve
-            motor.Apagar();
-            Thread.Sleep(1000); // Simula el frenado
-            Console.WriteLine("Elevador detenido..");
-
+            Thread.Sleep(1000);
+            Console.WriteLine("Yendo al piso {0}...",piso);
+            Thread.Sleep(1000);
             indicador.actualizar(piso);
+            Thread.Sleep(1000);
+            motor.Apagar();
+            Thread.Sleep(1000);
+            Console.WriteLine("Elevador detenido...");
             pisoact = piso;
+            Console.WriteLine("------------------------------------------------------");
         }
     }
 
