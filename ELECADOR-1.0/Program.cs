@@ -17,7 +17,46 @@
 
         public void Funcionamiento()
         {
-            // Lógica de funcionamiento del elevador
+            Console.WriteLine("Bienvenido");
+            Console.Clear();
+            Console.WriteLine("A QUE PISO QUIERES IR?");
+            Console.WriteLine("1...\n2...\n3...\n4...\n5...");
+            int piso = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+
+            if (piso == 1)
+            {
+
+                Console.WriteLine("Yendo al piso 1...");
+
+            } 
+            if (piso == 2)
+            {
+
+                Console.WriteLine("Yendo al piso 1...");
+
+            }
+            if (piso == 3)
+            {
+
+                Console.WriteLine("Yendo al piso 1...");
+            }
+            if (piso == 4)
+            {
+
+                Console.WriteLine("Yendo al piso 1...");
+            }
+            if (piso == 5)
+            {
+
+                Console.WriteLine("Yendo al piso 1...");
+            }
+
+            if (piso < 1 || piso > 5)
+            {
+                Console.WriteLine("Piso no valido, por favor ingrese un piso entre 1 y 5.");
+                return;
+            }
         }
 
 
@@ -28,7 +67,10 @@
         static void Main(string[] args)
         {
             ELEVADOR elevador = new ELEVADOR();
+            inicio:
             elevador.Funcionamiento();
+            Thread.Sleep(5000);
+            goto inicio;
 
         }
     }
