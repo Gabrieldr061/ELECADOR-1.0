@@ -42,7 +42,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("No se puede mover: el motor está apagado.");
+                    Console.WriteLine("No se puede mover: el motor está apagado..");
                 }
             }
         }
