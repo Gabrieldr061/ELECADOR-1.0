@@ -16,6 +16,7 @@
             //.......<SENSOR ANGEL>.........
 
             Sensor sensor = new Sensor();
+            Indicador indicador = new Indicador();
 
             if (!sensor.detectarPeso())
             {
@@ -28,6 +29,9 @@
 
             //.......<FIN DEL SENSOR>.......
 
+            indicador.IndicadorDePiso(1);
+            Console.WriteLine("------------------------------------------------------");
+
             Console.WriteLine("A QUE PISO QUIERES IR?");
             Console.WriteLine("1...\n2...\n3...\n4...\n5...");
             int piso = Convert.ToInt32(Console.ReadLine());
@@ -35,29 +39,31 @@
 
             if (piso == 1)
             {
-                Console.WriteLine("Yendo al piso 1...");
+                
+                indicador.actualizar(piso);
 
             } 
             if (piso == 2)
             {
+                indicador.actualizar(piso);
 
-                Console.WriteLine("Yendo al piso 1...");
 
             }
+           
             if (piso == 3)
             {
-
-                Console.WriteLine("Yendo al piso 1...");
+                indicador.actualizar(piso);
             }
+            
             if (piso == 4)
             {
-
-                Console.WriteLine("Yendo al piso 1...");
+                indicador.actualizar(piso);
             }
+           
             if (piso == 5)
             {
+                indicador.actualizar(piso);
 
-                Console.WriteLine("Yendo al piso 1...");
             }
 
             if (piso < 1 || piso > 5)

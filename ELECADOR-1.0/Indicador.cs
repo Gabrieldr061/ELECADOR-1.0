@@ -2,19 +2,19 @@
 {
     public partial class Indicador
     {
-public int pisoActual;
 
         // Constructor que recibe el piso inicial
         public void IndicadorDePiso(int pisoInicial)
         {
-            pisoActual = pisoInicial;
+          
+            Console.WriteLine("Estás en el piso {0}",pisoInicial);
         }
 
         // Método para actualizar el piso actual
         public void actualizar(int piso)
         {
-            pisoActual = piso;
-            Console.WriteLine("Piso {0}",pisoActual);
+            
+            Console.WriteLine("Llegando al Piso {0}",piso);
         }
     }
 }
