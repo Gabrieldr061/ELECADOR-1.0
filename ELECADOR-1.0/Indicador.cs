@@ -7,7 +7,7 @@
         public void IndicadorDePiso(int pisoInicial)
         {
           
-            Console.WriteLine("Estás en el piso {0}",pisoInicial);
+            Console.WriteLine("Piso {0}",pisoInicial);
         }
 
         // Método para actualizar el piso actual
