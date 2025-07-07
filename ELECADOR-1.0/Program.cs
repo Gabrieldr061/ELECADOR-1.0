@@ -26,31 +26,30 @@
 
             if (piso == 1)
             {
-                Console.WriteLine("Saliendo del elevador...");
-                return;
+
+                Console.WriteLine("Yendo al piso 1...");
+
             } 
             if (piso == 2)
             {
-                Console.WriteLine("Subiendo al segundo piso...");
-                return;
+
+                Console.WriteLine("Yendo al piso 1...");
+
             }
             if (piso == 3)
             {
-                Console.WriteLine("Subiendo al tercer piso...");
 
-                return;
+                Console.WriteLine("Yendo al piso 1...");
             }
             if (piso == 4)
             {
-                Console.WriteLine("Subiendo al cuarto piso...");
 
-                return;
+                Console.WriteLine("Yendo al piso 1...");
             }
             if (piso == 5)
             {
-                Console.WriteLine("Subiendo al quinto piso...");
 
-                return;
+                Console.WriteLine("Yendo al piso 1...");
             }
 
             if (piso < 1 || piso > 5)
@@ -68,7 +67,10 @@
         static void Main(string[] args)
         {
             ELEVADOR elevador = new ELEVADOR();
+            inicio:
             elevador.Funcionamiento();
+            Thread.Sleep(5000);
+            goto inicio;
 
         }
     }
