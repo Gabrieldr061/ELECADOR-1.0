@@ -1,4 +1,6 @@
-﻿namespace ELECADOR_1._0
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace ELECADOR_1._0
 {
     public partial class ELEVADOR
     {
@@ -9,7 +11,7 @@
 
         int pisoact = 1;
         int piso;
-
+        
         public ELEVADOR()
         {
             boton = new Boton();
@@ -20,16 +22,17 @@
 
         public void Funcionamiento()
         {
+            boton.abrirPuerta();
             Console.WriteLine("Bienvenido");
             Console.WriteLine("------------------------------------------------------");
             Thread.Sleep(1500);
-
             if (!sensor.detectarPeso())
             {
                 Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
+                boton.abrirPuerta();
                 return;
             }
-
+            
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
             indicador.IndicadorDePiso(pisoact);
@@ -38,6 +41,7 @@
             Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
             Console.WriteLine("------------------------------------------------------");
             piso = Convert.ToInt32(Console.ReadLine());
+            boton.cerrarPuerta();
             Console.Clear();
 
             if (piso < 1 || piso > 5)
@@ -62,6 +66,7 @@
             motor.Apagar();
             Thread.Sleep(1000);
             Console.WriteLine("Elevador detenido...");
+            boton.abrirPuerta();
             pisoact = piso;
             Console.WriteLine("------------------------------------------------------");
         }
