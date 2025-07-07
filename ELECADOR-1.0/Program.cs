@@ -7,19 +7,14 @@
         private Sensor sensor;
         private Motor motor;
 
-        public ELEVADOR()
-        {
-            boton = new Boton();
-            indicador = new Indicador();
-            sensor = new Sensor();
-            motor = new Motor();
-        }
-
         public void Funcionamiento()
         {
             Console.WriteLine("Bienvenido");
+            Thread.Sleep(1500);
             Console.Clear();
+
             //.......<SENSOR ANGEL>.........
+
             Sensor sensor = new Sensor();
 
             if (!sensor.detectarPeso())
@@ -28,8 +23,11 @@
                 return; // Detiene el programa si está en sobrepeso
             }
 
-            Console.WriteLine("Elevador funcionando correctamente.");
+            Console.WriteLine("Elevador funcionará correctamente.");
+            Console.WriteLine("------------------------------------------------------");
+
             //.......<FIN DEL SENSOR>.......
+
             Console.WriteLine("A QUE PISO QUIERES IR?");
             Console.WriteLine("1...\n2...\n3...\n4...\n5...");
             int piso = Convert.ToInt32(Console.ReadLine());
@@ -37,7 +35,6 @@
 
             if (piso == 1)
             {
-
                 Console.WriteLine("Yendo al piso 1...");
 
             } 
