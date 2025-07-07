@@ -61,7 +61,7 @@
             Thread.Sleep(2000); // Simula el tiempo de viaje
             motor.Apagar();
             Thread.Sleep(1000); // Simula el frenado
-            Console.WriteLine("Elevador detenido.");
+            Console.WriteLine("Elevador detenido..");
 
             indicador.actualizar(piso);
             pisoact = piso;
