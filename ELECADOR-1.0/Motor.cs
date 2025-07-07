@@ -3,19 +3,17 @@
     public partial class Motor
     {
             public bool Encendido;
-            public string Direccion;  // "arriba", "abajo", "detenido"
-
-            public void Encender() 
-            {
+            
+            public void Encender() // funcion que simula el comportamiendo del motor al encenderse
+        {
                 Encendido = true;
                 Console.WriteLine("El motor está encendido.");
             }
 
-            public void Apagar()
-            {
+            public void Apagar() // funcion que simula el comportamiendo del motor al apagarse 
+        {
                 Encendido = false;
-                Direccion = "detenido";
-                Console.WriteLine("El motor está frenando.");
+                Console.WriteLine("El motor está frenando....");
             }
 
         }
