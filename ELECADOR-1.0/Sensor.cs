@@ -4,8 +4,8 @@
     {
         public bool detectarPeso() //funcion para detectar el peso en el elevador
         {
-            Console.WriteLine("Ingrese el peso actual del elevador en Kg: "); //aqui ingresas cuanto peso el que hay en el elevador
-            string pesoActual = Console.ReadLine();
+            int pesoActual = (600);
+            Console.WriteLine("El peso del elevador es {0}kg",pesoActual); //aqui ingresas cuanto peso el que hay en el elevador
             float pesoActualNum = Convert.ToSingle(pesoActual); //conversion a flotante el peso
 
             if (pesoActualNum >= 700) //si el peso es mayor o igual, se ejecuta (no puede continuar el elevador)

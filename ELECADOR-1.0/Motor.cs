@@ -1,9 +1,7 @@
 ﻿namespace ELECADOR_1._0
 {
-    public partial class Elevador 
+    public partial class Motor
     {
-        public class Motor 
-        {
             public bool Encendido;
             public string Direccion;  // "arriba", "abajo", "detenido"
 
@@ -47,4 +45,3 @@
             }
         }
     }
-}
