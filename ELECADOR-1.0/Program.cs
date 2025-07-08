@@ -41,7 +41,6 @@ namespace ELECADOR_1._0
             Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
             Console.WriteLine("------------------------------------------------------");
             piso = Convert.ToInt32(Console.ReadLine());
-            boton.cerrarPuerta();
             Console.Clear();
 
             if (piso < 1 || piso > 5)
@@ -57,6 +56,7 @@ namespace ELECADOR_1._0
             }
 
             Console.WriteLine("------------------------------------------------------");
+            boton.cerrarPuerta();
             motor.Encender();
             Thread.Sleep(1000);
             Console.WriteLine("Yendo al piso {0}...",piso);
