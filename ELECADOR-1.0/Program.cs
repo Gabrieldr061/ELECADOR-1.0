@@ -22,10 +22,11 @@ namespace ELECADOR_1._0
 
         public void Funcionamiento()
         {
-            boton.abrirPuerta();
             Console.WriteLine("Bienvenido");
             Console.WriteLine("------------------------------------------------------");
             Thread.Sleep(1500);
+            boton.abrirPuerta();
+            Console.WriteLine("------------------------------------------------------");
             if (!sensor.detectarPeso())
             {
                 Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
@@ -57,6 +58,7 @@ namespace ELECADOR_1._0
 
             Console.WriteLine("------------------------------------------------------");
             boton.cerrarPuerta();
+            Thread.Sleep(1000);
             motor.Encender();
             Thread.Sleep(1000);
             Console.WriteLine("Yendo al piso {0}...",piso);
@@ -66,6 +68,7 @@ namespace ELECADOR_1._0
             motor.Apagar();
             Thread.Sleep(1000);
             Console.WriteLine("Elevador detenido...");
+            Thread.Sleep(1000);
             boton.abrirPuerta();
             pisoact = piso;
             Console.WriteLine("------------------------------------------------------");
