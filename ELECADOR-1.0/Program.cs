@@ -5,6 +5,8 @@ namespace ELECADOR_1._0
     public partial class ELEVADOR
     {
         private Boton boton;
+        private Boton.Botonpuerta botonPuerta;
+        private Boton.Botonpiso botonPiso; 
         private Indicador indicador;
         private Sensor sensor;
         private Motor motor;
@@ -14,7 +16,8 @@ namespace ELECADOR_1._0
         
         public ELEVADOR()
         {
-            boton = new Boton();
+            botonPuerta = new Boton.Botonpuerta(false); // botón de puerta inicia no presionado
+            botonPiso = new Boton.Botonpiso(false); // piso=0, actual=1, no presionado
             indicador = new Indicador();
             sensor = new Sensor();
             motor = new Motor();
@@ -25,39 +28,22 @@ namespace ELECADOR_1._0
             Console.WriteLine("Bienvenido");
             Console.WriteLine("------------------------------------------------------");
             Thread.Sleep(1500);
-            boton.abrirPuerta();
+            botonPuerta.abrirPuerta();
             Console.WriteLine("------------------------------------------------------");
             if (!sensor.detectarPeso())
             {
                 Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
-                boton.abrirPuerta();
+                botonPuerta.abrirPuerta();
                 return;
             }
             
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
             indicador.IndicadorDePiso(pisoact);
-            Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine("A QUE PISO QUIERES IR?");
-            Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
-            Console.WriteLine("------------------------------------------------------");
-            piso = Convert.ToInt32(Console.ReadLine());
+            botonPiso.seleccionarPiso(piso, pisoact);
             Console.Clear();
-
-            if (piso < 1 || piso > 5)
-            {
-                Console.WriteLine("Piso no valido, por favor ingrese un piso entre 1 y 5.");
-                return;
-            }
-
-            if (piso == pisoact)
-            {
-                Console.WriteLine("Ya estás en el piso ingresado \n Ingresa otro piso");
-                return;
-            }
-
             Console.WriteLine("------------------------------------------------------");
-            boton.cerrarPuerta();
+            botonPuerta.cerrarPuerta();
             Thread.Sleep(1000);
             motor.Encender();
             Thread.Sleep(1000);
@@ -69,7 +55,7 @@ namespace ELECADOR_1._0
             Thread.Sleep(1000);
             Console.WriteLine("Elevador detenido...");
             Thread.Sleep(1000);
-            boton.abrirPuerta();
+            botonPuerta.abrirPuerta();
             pisoact = piso;
             Console.WriteLine("------------------------------------------------------");
         }
