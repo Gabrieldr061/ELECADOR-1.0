@@ -29,7 +29,7 @@ namespace ELECADOR_1._0
             Console.WriteLine("------------------------------------------------------");
             if (!sensor.detectarPresencia())
             {
-                Console.WriteLine("Error: presencia detectad, operacion detenida.");
+                Console.WriteLine("Error: presencia detectada, operación detenida.");
                 boton.abrirPuerta();
                 return;
             }

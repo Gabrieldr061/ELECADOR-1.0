@@ -31,11 +31,11 @@
             Console.WriteLine("Detectando presencia en la puerta...");
             string presencia = Console.ReadLine();
 
-            if (presencia == "Si")
+            if (presencia == "si")
             {
                 Console.WriteLine("Presencia detectada");
                 Console.WriteLine("¡Favor de aeljarse de la puerta!");
-                Console.WriteLine("----------------------------------------------------");
+                
                 return false;
             }
 
@@ -43,7 +43,7 @@
             {
                 Console.WriteLine("Presencia no detectada");
                 Console.WriteLine("El elevador puede continuar");
-                Console.WriteLine("----------------------------------------------------");
+                
                 return true;
             }
         }
