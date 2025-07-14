@@ -16,7 +16,7 @@ namespace ELECADOR_1._0
         {
             boton = new Boton();
             indicador = new Indicador();
-            sensor = new Sensor();
+            sensor = new Sensor(true);
             motor = new Motor();
         }
 
@@ -27,20 +27,23 @@ namespace ELECADOR_1._0
             Thread.Sleep(1500);
             boton.abrirPuerta();
             Console.WriteLine("------------------------------------------------------");
-            if (!sensor.detectarPresencia())
+            //-----------------------------//
+            SensorPeso sensorPeso = new SensorPeso("55", true);
+            SensorPresencia sensorPresencia = new SensorPresencia(true);
+            if (!sensorPresencia.detectarPresencia())
             {
                 Console.WriteLine("Error: presencia detectada, operación detenida.");
                 boton.abrirPuerta();
                 return;
             }
             Console.WriteLine("------------------------------------------------------");
-            if (!sensor.detectarPeso())
+            if (!sensorPeso.detectarPeso())
             {
                 Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
                 boton.abrirPuerta();
                 return;
             }
-            
+
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
             indicador.IndicadorDePiso(pisoact);
