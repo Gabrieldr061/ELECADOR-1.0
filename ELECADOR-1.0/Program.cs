@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using ProyectoElevador;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ELECADOR_1._0
 {
@@ -36,7 +37,7 @@ namespace ELECADOR_1._0
             
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
-            indicador.IndicadorDePiso(pisoact);
+            IndicadorDePiso indicadorPiso (pisoact);
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("A QUE PISO QUIERES IR?");
             Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
