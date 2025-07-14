@@ -1,9 +1,7 @@
-﻿
-
-namespace ELECADOR_1._0
+﻿namespace ELECADOR_1._0
 {
     //clase padre
-    public class Indicador
+    public partial class Indicador
     {
         // Atributo privado
         private int _estado;
@@ -24,34 +22,39 @@ namespace ELECADOR_1._0
         // Método general
         public void MostrarEstado()
         {
-            Console.WriteLine( "Cambiando Numeración de piso en pantalla ");
-        }
-        
-        //clase hija
-        public class indicadorDePiso : Indicador
-        {
-            // Atributo privado
-            private int _numeroDePiso;
-
-            // Propiedad pública
-            public int NumeroDePiso
-            {
-                get { return _numeroDePiso; }
-                set { _numeroDePiso = value; }
-            }
-
-            // Constructor que usa base
-            public indicadorDePiso(int estado, int piso) : base(estado)
-            {
-                this._numeroDePiso = piso;
-            }
-
-            // Método propio
-            public void actualizar(int nuevoPiso)
-            {               
-                Console.WriteLine("Piso actualizado a: " + nuevoPiso);
-            }
-
+            Console.WriteLine("Cambiando Numeración de piso en pantalla ");
         }
     }
+
+     //clase hija
+     public class indicadorDePiso : Indicador
+     {
+         // Atributo privado
+         private int _numeroDePiso;
+
+         // Propiedad pública
+         public int NumeroDePiso
+         {
+             get { return _numeroDePiso; }
+             set { _numeroDePiso = value; }
+         }
+
+         // Constructor que usa base
+         public indicadorDePiso(int estado, int piso) : base(estado)
+         {
+             this._numeroDePiso = piso;
+         }
+
+         // Método propio
+         public void actualizar(int nuevoPiso, int estado)
+         {
+            base.MostrarEstado();
+            Thread.Sleep(1000);
+            Console.WriteLine("pasamos del piso: {0}", estado);
+            Thread.Sleep(1000);
+            Console.WriteLine("al Piso: {0}", nuevoPiso);
+         }
+     }
+
+
 }

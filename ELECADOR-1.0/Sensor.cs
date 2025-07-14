@@ -28,9 +28,6 @@
         {
             this._valorSensor = _valorSensor;
         }
-        
-
-       
     }
 
     public class SensorPeso : Sensor
@@ -70,8 +67,6 @@
             
         }
 
-
- 
         //metodo
         public bool detectarPeso() //funcion para detectar el peso en el elevador
         {
@@ -82,18 +77,22 @@
             Console.WriteLine("--------------------------------------------------------");
             Console.WriteLine("El peso del elevador es {0} kg", PesoActual); //aqui ingresas cuanto peso el que hay en el elevador
 
-
             if (pesoActualNum >= 700) //si el peso es mayor o igual, se ejecuta (no puede continuar el elevador)
             {
+                Console.Clear();
+                Console.WriteLine("--------------------------------------------------------");
+                Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
                 Console.WriteLine("Peso no permitido, {0} kg, excede limite de peso", pesoActualNum);
                 float pesoExcedente = 700 - pesoActualNum;
                 Console.WriteLine("¡Favor de bajar una persona o quitar {0} Kg del elevador!", pesoExcedente);
+                Console.WriteLine("--------------------------------------------------------");
                 return false;
             }
 
             else //si el peso esta dentro del limite permitido puede ejecutarse 
             {
                 Console.WriteLine("Peso permitido, el elevador puede continuar");
+                Console.WriteLine("Elevador funcionará correctamente.");
                 return true;
             }
         }
@@ -128,12 +127,16 @@
         {
             Console.WriteLine("Detectando presencia en la puerta...");
             string presencia = Console.ReadLine();
+            Console.WriteLine("--------------------------------------------------------");
 
             if (presencia == "si")
             {
+                Console.Clear();
+                Console.WriteLine("--------------------------------------------------------");
+                Console.WriteLine("Error: presencia detectada, operación detenida.");
                 Console.WriteLine("Presencia detectada");
                 Console.WriteLine("¡Favor de aeljarse de la puerta!");
-
+                Console.WriteLine("--------------------------------------------------------");
                 return false;
             }
 

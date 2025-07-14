@@ -7,52 +7,46 @@ namespace ELECADOR_1._0
         private Indicador indicador;
         private Sensor sensor;
         private Motor motor;
-
-        int pisoact = 1;
-        int piso;
-        
+        private int pisoact = 1;
+        private int piso;
         
         public ELEVADOR()
         {
             boton = new Boton();
             indicador = new Indicador(pisoact);
-            sensor = new Sensor();
-            indicador = new Indicador();
             sensor = new Sensor(true);
             motor = new Motor();
         }
 
         public void Funcionamiento()
         {
-
-            
-
-            Console.WriteLine("Bienvenido");
-            Console.WriteLine("------------------------------------------------------");
-            Thread.Sleep(1500);
-            boton.abrirPuerta();
-            Console.WriteLine("------------------------------------------------------");
-            //-----------------------------//
             SensorPeso sensorPeso = new SensorPeso("55", true);
             SensorPresencia sensorPresencia = new SensorPresencia(true);
+            indicadorDePiso indicadorDePiso = new indicadorDePiso(piso, pisoact);
+
+            boton.abrirPuerta();
+            Console.WriteLine("------------------------------------------------------");
+
             if (!sensorPresencia.detectarPresencia())
             {
-                Console.WriteLine("Error: presencia detectada, operación detenida.");
                 boton.abrirPuerta();
-                return;
-            }
-            Console.WriteLine("------------------------------------------------------");
-            if (!sensorPeso.detectarPeso())
-            {
-                Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
-                boton.abrirPuerta();
+                Thread.Sleep(1500);
                 return;
             }
 
-            Console.WriteLine("Elevador funcionará correctamente.");
+            Console.WriteLine("------------------------------------------------------");
+
+            if (!sensorPeso.detectarPeso())
+            {
+                boton.abrirPuerta();
+                Thread.Sleep(1500);
+                return;
+            }
+
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine( "Piso actual: {0} ",pisoact);
             Console.WriteLine("------------------------------------------------------");
+
             Console.WriteLine("A QUE PISO QUIERES IR?");
             Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
             Console.WriteLine("------------------------------------------------------");
@@ -76,18 +70,16 @@ namespace ELECADOR_1._0
             Thread.Sleep(1000);
             motor.Encender();
             Thread.Sleep(1000);
-            Console.WriteLine("Yendo al piso {0}...",piso);
-            Thread.Sleep(1000);
-            indicador.MostrarEstado();  
+            indicadorDePiso.actualizar(piso,pisoact);
             Thread.Sleep(1000);
             motor.Apagar();
             Thread.Sleep(1000);
             Console.WriteLine("Elevador detenido...");
             Thread.Sleep(1000);
             boton.abrirPuerta();
-            pisoact = piso;
             Console.WriteLine("------------------------------------------------------");
-            
+
+            pisoact = piso;
         }
     }
 
@@ -97,6 +89,11 @@ namespace ELECADOR_1._0
         {
             ELEVADOR elevador = new ELEVADOR();
             inicio:
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine("Bienvenido");
+            Console.WriteLine("------------------------------------------------------");
+            Thread.Sleep(1500);
+
             elevador.Funcionamiento();
             Thread.Sleep(3000);
             Console.Clear();
