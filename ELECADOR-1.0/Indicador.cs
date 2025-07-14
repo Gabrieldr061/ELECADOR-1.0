@@ -13,8 +13,10 @@
         // Método para actualizar el piso actual
         public void actualizar(int piso)
         {
-            
-            Console.WriteLine("Llegando al Piso {0}...",piso);
+
+            Console.WriteLine("Llegando al Piso {0}...", piso);
+
+
         }
     }
 }
