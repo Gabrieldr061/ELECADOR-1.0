@@ -25,5 +25,26 @@
                 return true;
             }
         }
+
+        public bool detectarPresencia()
+        {
+            Console.WriteLine("Detectando presencia en la puerta...");
+            string presencia = Console.ReadLine();
+
+            if (presencia == "Si")
+            {
+                Console.WriteLine("Presencia detectada");
+                Console.WriteLine("¡Favor de aeljarse de la puerta!");
+                Console.WriteLine("----------------------------------------------------");
+                return false;
+            }
+
+            else 
+            {
+                Console.WriteLine("Presencia no detectada");
+                Console.WriteLine("El elevador puede continuar");
+                Console.WriteLine("----------------------------------------------------");
+                return true;
+            }
     }
 }
