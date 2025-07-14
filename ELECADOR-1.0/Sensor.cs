@@ -39,12 +39,13 @@
                 return false;
             }
 
-            else 
+            else
             {
                 Console.WriteLine("Presencia no detectada");
                 Console.WriteLine("El elevador puede continuar");
                 Console.WriteLine("----------------------------------------------------");
                 return true;
             }
+        }
     }
 }

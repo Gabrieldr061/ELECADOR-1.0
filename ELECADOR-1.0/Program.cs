@@ -27,6 +27,13 @@ namespace ELECADOR_1._0
             Thread.Sleep(1500);
             boton.abrirPuerta();
             Console.WriteLine("------------------------------------------------------");
+            if (!sensor.detectarPresencia())
+            {
+                Console.WriteLine("Error: presencia detectad, operacion detenida.");
+                boton.abrirPuerta();
+                return;
+            }
+            Console.WriteLine("------------------------------------------------------");
             if (!sensor.detectarPeso())
             {
                 Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
