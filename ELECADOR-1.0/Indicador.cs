@@ -1,21 +1,22 @@
 ﻿
-namespace ProyectoElevador
+
+namespace ELECADOR_1._0
 {
     //clase padre
     public class Indicador
     {
         // Atributo privado
-        private string _estado;
+        private int _estado;
 
         // Propiedad pública
-        public string Estado
+        public int Estado
         {
             get { return _estado; }
             set { _estado = value; }
         }
 
         // Constructor
-        public Indicador(string estado)
+        public Indicador(int estado)
         {
             this._estado = estado;
         }
@@ -23,11 +24,11 @@ namespace ProyectoElevador
         // Método general
         public void MostrarEstado()
         {
-            
+            Console.WriteLine( "Cambiando Numeración de piso en pantalla ");
         }
-
+        
         //clase hija
-        public class IndicadorDePiso : Indicador
+        public class indicadorDePiso : Indicador
         {
             // Atributo privado
             private int _numeroDePiso;
@@ -40,15 +41,14 @@ namespace ProyectoElevador
             }
 
             // Constructor que usa base
-            public IndicadorDePiso(string estado, int piso) : base(estado)
+            public indicadorDePiso(int estado, int piso) : base(estado)
             {
                 this._numeroDePiso = piso;
             }
 
             // Método propio
-            public void Actualizar(int nuevoPiso)
-            {
-                NumeroDePiso = nuevoPiso;
+            public void actualizar(int nuevoPiso)
+            {               
                 Console.WriteLine("Piso actualizado a: " + nuevoPiso);
             }
 
