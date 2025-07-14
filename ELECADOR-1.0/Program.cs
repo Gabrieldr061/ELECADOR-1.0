@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
+﻿
 namespace ELECADOR_1._0
 {
     public partial class ELEVADOR
@@ -12,9 +11,12 @@ namespace ELECADOR_1._0
         int pisoact = 1;
         int piso;
         
+        
         public ELEVADOR()
         {
             boton = new Boton();
+            indicador = new Indicador(pisoact);
+            sensor = new Sensor();
             indicador = new Indicador();
             sensor = new Sensor(true);
             motor = new Motor();
@@ -22,6 +24,9 @@ namespace ELECADOR_1._0
 
         public void Funcionamiento()
         {
+
+            
+
             Console.WriteLine("Bienvenido");
             Console.WriteLine("------------------------------------------------------");
             Thread.Sleep(1500);
@@ -46,7 +51,7 @@ namespace ELECADOR_1._0
 
             Console.WriteLine("Elevador funcionará correctamente.");
             Console.WriteLine("------------------------------------------------------");
-            indicador.IndicadorDePiso(pisoact);
+            Console.WriteLine( "Piso actual: {0} ",pisoact);
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("A QUE PISO QUIERES IR?");
             Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
@@ -73,7 +78,7 @@ namespace ELECADOR_1._0
             Thread.Sleep(1000);
             Console.WriteLine("Yendo al piso {0}...",piso);
             Thread.Sleep(1000);
-            indicador.actualizar(piso);
+            indicador.MostrarEstado();  
             Thread.Sleep(1000);
             motor.Apagar();
             Thread.Sleep(1000);
@@ -82,6 +87,7 @@ namespace ELECADOR_1._0
             boton.abrirPuerta();
             pisoact = piso;
             Console.WriteLine("------------------------------------------------------");
+            
         }
     }
 
