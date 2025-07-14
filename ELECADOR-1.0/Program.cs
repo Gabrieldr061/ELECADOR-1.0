@@ -66,7 +66,7 @@ namespace ELECADOR_1._0
             Thread.Sleep(1000);
             Console.WriteLine("Yendo al piso {0}...",piso);
             Thread.Sleep(1000);
-            indicador.MostrarEstado();
+            indicador.MostrarEstado();  
             Thread.Sleep(1000);
             motor.Apagar();
             Thread.Sleep(1000);
