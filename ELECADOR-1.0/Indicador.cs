@@ -3,7 +3,7 @@
 namespace ELECADOR_1._0
 {
     //clase padre
-    public class Indicador
+    public partial class Indicador
     {
         // Atributo privado
         private int _estado;
@@ -47,9 +47,15 @@ namespace ELECADOR_1._0
             }
 
             // Método propio
-            public void actualizar(int nuevoPiso)
-            {               
-                Console.WriteLine("Piso actualizado a: " + nuevoPiso);
+            public void actualizar(int nuevoPiso, int estado)
+            {
+                base.MostrarEstado();
+                Thread.Sleep(1000);
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine("Pasamos del piso: {0}",estado);
+                Thread.Sleep(1000);
+                Console.WriteLine("Al piso: {0}",nuevoPiso);
+                Console.WriteLine("---------------------------------------------------");
             }
 
         }
