@@ -22,7 +22,7 @@
         // Método general
         public void MostrarEstado()
         {
-            Console.WriteLine("Cambiando Numeración de piso en pantalla ");
+            Console.WriteLine("Cambiando numeración de piso en pantalla...");
         }
     }
 
@@ -50,10 +50,12 @@
          {
             base.MostrarEstado();
             Thread.Sleep(1000);
-            Console.WriteLine("pasamos del piso: {0}", estado);
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine("Pasamos del piso: {0}", estado);
             Thread.Sleep(1000);
-            Console.WriteLine("al Piso: {0}", nuevoPiso);
-         }
+            Console.WriteLine("Al Piso: {0}", nuevoPiso);
+            Console.WriteLine("------------------------------------------------------");
+        }
      }
 
 

@@ -12,7 +12,7 @@ namespace ELECADOR_1._0
         
         public ELEVADOR()
         {
-            boton = new Boton();
+            boton = new Boton(true);
             indicador = new Indicador(pisoact);
             sensor = new Sensor(true);
             motor = new Motor();
@@ -23,13 +23,16 @@ namespace ELECADOR_1._0
             SensorPeso sensorPeso = new SensorPeso("55", true);
             SensorPresencia sensorPresencia = new SensorPresencia(true);
             indicadorDePiso indicadorDePiso = new indicadorDePiso(piso, pisoact);
+            Botonpuerta botonpuerta = new Botonpuerta(true);
+            Botonpiso botonpiso = new Botonpiso(true);
 
-            boton.abrirPuerta();
+
+            botonpuerta.abrirPuerta();
             Console.WriteLine("------------------------------------------------------");
 
             if (!sensorPresencia.detectarPresencia())
             {
-                boton.abrirPuerta();
+                botonpuerta.abrirPuerta();
                 Thread.Sleep(1500);
                 return;
             }
@@ -38,47 +41,35 @@ namespace ELECADOR_1._0
 
             if (!sensorPeso.detectarPeso())
             {
-                boton.abrirPuerta();
+                botonpuerta.abrirPuerta();
                 Thread.Sleep(1500);
                 return;
             }
 
             Console.WriteLine("------------------------------------------------------");
-            Console.WriteLine( "Piso actual: {0} ",pisoact);
-            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine("Piso actual: {0} ", pisoact);
 
-            Console.WriteLine("A QUE PISO QUIERES IR?");
-            Console.WriteLine("...1...\n...2...\n...3...\n...4...\n...5...");
-            Console.WriteLine("------------------------------------------------------");
+            inicio:
+            botonpiso.seleccionarPiso();
             piso = Convert.ToInt32(Console.ReadLine());
             Console.Clear();
-
-            if (piso < 1 || piso > 5)
+            if (piso < 1 || piso > 5 || piso == pisoact)
             {
-                Console.WriteLine("Piso no valido, por favor ingrese un piso entre 1 y 5.");
-                return;
+                Console.WriteLine("Piso no valido, por favor ingrese un piso entre 1 y 5 y que no sea el mismo.");
+                goto inicio;
             }
-
-            if (piso == pisoact)
-            {
-                Console.WriteLine("Ya estás en el piso ingresado \n Ingresa otro piso");
-                return;
-            }
-
-            Console.WriteLine("------------------------------------------------------");
-            boton.cerrarPuerta();
-            Thread.Sleep(1000);
-            motor.Encender();
-            Thread.Sleep(1000);
-            indicadorDePiso.actualizar(piso,pisoact);
-            Thread.Sleep(1000);
-            motor.Apagar();
-            Thread.Sleep(1000);
-            Console.WriteLine("Elevador detenido...");
-            Thread.Sleep(1000);
-            boton.abrirPuerta();
-            Console.WriteLine("------------------------------------------------------");
-
+                Console.WriteLine("------------------------------------------------------");
+                botonpuerta.cerrarPuerta();
+                Thread.Sleep(1000);
+                motor.Encender();
+                Thread.Sleep(1000);
+                indicadorDePiso.actualizar(piso, pisoact);
+                Thread.Sleep(1000);
+                motor.Apagar();
+                Thread.Sleep(1000);
+                botonpuerta.abrirPuerta();
+                Console.WriteLine("------------------------------------------------------");
+            
             pisoact = piso;
         }
     }

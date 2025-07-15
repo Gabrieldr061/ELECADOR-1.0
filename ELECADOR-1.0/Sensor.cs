@@ -92,7 +92,7 @@
             else //si el peso esta dentro del limite permitido puede ejecutarse 
             {
                 Console.WriteLine("Peso permitido, el elevador puede continuar");
-                Console.WriteLine("Elevador funcionará correctamente.");
+                Console.WriteLine("Elevador funcionará correctamente");
                 return true;
             }
         }

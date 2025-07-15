@@ -14,7 +14,9 @@
         {
                 Encendido = false;
                 Console.WriteLine("El motor está frenando....");
-            }
+                Thread.Sleep(1000);
+                Console.WriteLine("El motor está apagado...");
+        }
 
         }
     }
