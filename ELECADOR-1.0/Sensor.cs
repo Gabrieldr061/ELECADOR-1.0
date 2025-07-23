@@ -1,152 +1,90 @@
 ﻿namespace ELECADOR_1._0
 {
-    public partial class Sensor
+   
+    //---------------------Polimorfismo---------------
+
+    public abstract class Sensor
     {
-        private bool _valorSensor;
+        public bool ValorSensor { get; set; } //propiedad publica con get y set para acceder al estado del sensor
 
-        //atributo
-        public bool ValorSensor // Propiedad pública que permite acceder/modificar
+        public Sensor(bool valorSensor) //constructor base que recibe el estado del sensor
         {
-            get
-            {
-                return _valorSensor;
-            }
-            set
-            {
-                _valorSensor = value;
-            }
+            ValorSensor = valorSensor;
         }
 
-        //metodo
-        public void leerValor()
-        {
-            Console.WriteLine("Leyendo valores del sensor...");
-        }
+        public abstract void LeerValor();
+        
 
-        //constructor
-        public Sensor(bool _valorSensor)
-        {
-            this._valorSensor = _valorSensor;
-        }
+        public abstract void EjecutarAccion(); //metodo abstracto: obligatorio implementar en clases hijas
     }
 
+    //CLASE HIJAS
+    //--------SENSOR DE PESO--------
     public class SensorPeso : Sensor
     {
-        //atributo
-        private string _pesoActual;
-        private float _pesoActualNum;
+        public SensorPeso(bool valorSensor) : base(valorSensor) { } //constructor que pasa el estado al constructor base
 
-        public string PesoActual
-        {
-            get
-            {
-                return _pesoActual;
-            }
-            set
-            {
-                _pesoActual = value;
-            }
-        }
-
-        public float PesoActualNum
-        {
-            get
-            {
-                return _pesoActualNum;
-            }
-            set 
-            {
-                _pesoActualNum = value;
-            }
-        }
-
-        //constructor
-        public SensorPeso (string pesoActual, bool _valorSensor) :base (_valorSensor) // Constructor que hereda el estado del sensor y recibe el peso como texto.
-        {
-            this.PesoActual = pesoActual;
-            
-        }
-
-        //metodo
-        public bool detectarPeso() //funcion para detectar el peso en el elevador
+        public override void LeerValor() //sobrescribe el método LeerValor para mostrar un mensaje específico
         {
             Console.WriteLine("Analizando peso...");
+        }
 
-            string PesoActual = Console.ReadLine();
-            float pesoActualNum = Convert.ToSingle(PesoActual); //conversion a flotante el peso
-            Console.WriteLine("--------------------------------------------------------");
-            Console.WriteLine("El peso del elevador es {0} kg", PesoActual); //aqui ingresas cuanto peso el que hay en el elevador
+        public override void EjecutarAccion() //implementa el método abstracto: evalúa el peso ingresado por consola
+        {
+            float peso;
 
-            if (pesoActualNum >= 700) //si el peso es mayor o igual, se ejecuta (no puede continuar el elevador)
+            do
             {
-                Console.Clear();
-                Console.WriteLine("--------------------------------------------------------");
-                Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
-                Console.WriteLine("Peso no permitido, {0} kg, excede limite de peso", pesoActualNum);
-                float pesoExcedente = 700 - pesoActualNum;
-                Console.WriteLine("¡Favor de bajar una persona o quitar {0} Kg del elevador!", pesoExcedente);
-                Console.WriteLine("--------------------------------------------------------");
-                return false;
-            }
+                Console.WriteLine("Ingrese el peso actual (kg): ");
+                string entrada = Console.ReadLine();                 // Lee peso como texto
+                 peso = Convert.ToSingle(entrada);              // Convierte a número flotante
 
-            else //si el peso esta dentro del limite permitido puede ejecutarse 
-            {
-                Console.WriteLine("Peso permitido, el elevador puede continuar");
-                Console.WriteLine("Elevador funcionará correctamente");
-                return true;
-            }
+                if (peso >= 700)                                     // Verifica si excede el límite
+                {
+                    Console.Clear();
+                    Console.WriteLine("Error: elevador en sobrepeso, operación detenida.");
+                    Console.WriteLine("Peso ingresado: {0} kg (Límite: 700 kg)", peso);
+                    //return false;
+                }
+                else
+                {
+                    Console.WriteLine("Peso permitido ({0} kg). \nEl elevador puede continuar.", peso);
+                    //return = true;
+                }
+            } while (peso > 700);
         }
     }
 
+    //----------SENSOR DE PRESENCIA-----
     public class SensorPresencia : Sensor
     {
-        //Atributo
-        private string _presencia;
+        public SensorPresencia(bool valorSensor) : base(valorSensor) { } //constructor que pasa el estado al constructor base
 
-        public string Presencia
+        public override void LeerValor() //sobrescribe el metodo LeerValor con un mensaje diferente
         {
-            get
-            {
-                return _presencia;
-            }
-
-            set
-            {
-                _presencia = value;
-            }
+            Console.WriteLine("Detectando presencia...");
         }
 
-        //constructor
-        public SensorPresencia(bool _valorSensor) :base (_valorSensor) 
+        public override void EjecutarAccion() //implementa el método abstracto: evaloa si hay alguien en la puerta
         {
-            this.Presencia = Presencia;
-        }
-
-        //metodo
-        public bool detectarPresencia()
-        {
-            Console.WriteLine("Detectando presencia en la puerta...");
-            string presencia = Console.ReadLine();
-            Console.WriteLine("--------------------------------------------------------");
-
-            if (presencia == "si")
+            string entrada;
+            do
             {
-                Console.Clear();
-                Console.WriteLine("--------------------------------------------------------");
-                Console.WriteLine("Error: presencia detectada, operación detenida.");
-                Console.WriteLine("Presencia detectada");
-                Console.WriteLine("¡Favor de aeljarse de la puerta!");
-                Console.WriteLine("--------------------------------------------------------");
-                return false;
-            }
+                Console.WriteLine("¿Hay presencia en la puerta? (si/no): ");
+                entrada = Console.ReadLine();
 
-            else
-            {
-                Console.WriteLine("Presencia no detectada");
-                Console.WriteLine("El elevador puede continuar");
-
-                return true;
-            }
+                if (entrada.ToLower() == "si")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Presencia detectada. \nOperación detenida. ¡Aléjese de la puerta!");
+                    //return = false; 
+                }
+                else
+                {
+                    Console.WriteLine("No hay presencia. El elevador puede continuar.");
+                    //return = true;
+                }
+            } while (entrada == "si");
         }
     }
 }

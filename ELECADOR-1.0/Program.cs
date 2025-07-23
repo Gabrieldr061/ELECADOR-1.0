@@ -14,14 +14,15 @@ namespace ELECADOR_1._0
         {
             boton = new Boton(true);
             indicador = new Indicador(pisoact);
-            sensor = new Sensor(true);
+           // sensor = new Sensor(true);
+       
             motor = new Motor();
         }
 
         public void Funcionamiento()
         {
-            SensorPeso sensorPeso = new SensorPeso("55", true);
-            SensorPresencia sensorPresencia = new SensorPresencia(true);
+            //SensorPeso sensorPeso = new SensorPeso("55", true);
+            //SensorPresencia sensorPresencia = new SensorPresencia(true);
             indicadorDePiso indicadorDePiso = new indicadorDePiso(piso, pisoact);
             Botonpuerta botonpuerta = new Botonpuerta(true);
             Botonpiso botonpiso = new Botonpiso(true);
@@ -30,21 +31,37 @@ namespace ELECADOR_1._0
             botonpuerta.abrirPuerta();
             Console.WriteLine("------------------------------------------------------");
 
-            if (!sensorPresencia.detectarPresencia())
+            /*if (!sensorPresencia.detectarPresencia())
+             {
+                 botonpuerta.abrirPuerta();
+                 Thread.Sleep(1500);
+                 return;
+             }*/
+
+            //<<<<<<<<NUEVO POLIMOSFIRMO>>>>>>>>>>
+
+            
+            List<Sensor> sensores = new List<Sensor>(); //se crea una lista de tipo Sensor (clase base)
+
+            //agrega dos sensores: uno de peso y otro de presencia
+            sensores.Add(new SensorPeso(true));
+            sensores.Add(new SensorPresencia(true));
+
+            //recorre la lista y ejecuta metodos polimorficos
+            foreach (Sensor s in sensores)
             {
-                botonpuerta.abrirPuerta();
-                Thread.Sleep(1500);
-                return;
+                s.LeerValor(); //llama al método correspondiente de cada sensor
+                s.EjecutarAccion(); //aplica polimorfismo dinámico (override)
             }
 
             Console.WriteLine("------------------------------------------------------");
 
-            if (!sensorPeso.detectarPeso())
+            /*if (!sensorPeso.detectarPeso())
             {
                 botonpuerta.abrirPuerta();
                 Thread.Sleep(1500);
                 return;
-            }
+            }*/
 
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine("Piso actual: {0} ", pisoact);
